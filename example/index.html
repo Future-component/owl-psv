@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    body {
+      position: relative;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background-color: #000;
+    }
+
+    #container {
+      width: 100%;
+      height: 100vh;
+      cursor: pointer;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="container"></div>
+
+  <script src="../static/three-71.min.js"></script>
+  <script src="../static/sphoords.js"></script>
+  <script src="../static/stats.min.js"></script>
+  <script src="../static/Tween.min.js"></script>
+  <script src="../src/index.js?t=2"></script>
+
+  <script>
+    var data = [
+      {
+        spots: {
+          '000': {
+            id: '000',
+            x: 0,
+            y: 0,
+            z: -90,
+            goTo: 1,
+            name: '大门'
+          },
+          '111': {
+            id: '111',
+            x: 10,
+            y: 10,
+            z: -80,
+            goTo: 1,
+            name: '教室'
+          },
+          '333': {
+            id: '333',
+            x: 40,
+            y: 40,
+            z: -50,
+            name: 'scene1'
+          },
+        },
+        eggs: {
+          'egg': {
+            id: 'egg',
+            x: 20,
+            y: -10,
+            z: -50,
+            value: 300,
+            name: '300元代金券'
+          }
+        },
+      },
+      {
+        spots: {
+          '222': {
+            id: '222',
+            x: -10,
+            y: -10,
+            z: -80,
+            goTo: 0,
+            name: '第一张'
+          }
+        }
+      },
+    ];
+
+    var images = {
+      0: {
+        img: '../static/imgs/spot_gif.png',
+        num: 25,
+      },
+      1: {
+        img: '../static/imgs/loin.png',
+        num: 4,
+      },
+      2: {
+        img: '../static/imgs/xu.png',
+        num: 4,
+      },
+      3: {
+        img: '../static/imgs/pig.png',
+        num: 10,
+      },
+      4: {
+        img: '../static/imgs/egg.png',
+        num: 8,
+      },
+      5: {
+        img: '../static/imgs/egg-c.png',
+        num: 18,
+      },
+    }
+
+    var audiosData = {
+      main: "../static/data/main.mp3",
+      zan: "../static/data/zan.mp3",
+    }
+
+    var div = document.getElementById('container');
+
+    var psv = new owlPSV({
+      audios: audiosData,
+      images: images,
+      panoramas: [
+        '../static/imgs/1.jpg',
+        '../static/imgs/2.jpg',
+        '../static/imgs/3.jpg',
+      ],
+      data: data,
+      container: div,
+      max_fov: 170,
+      default_position: {
+        long: 5,
+        lat: -3,
+      },
+      anim_complated: animComplated,
+      clickEggCallback: clickEggCallback,
+      progress: loadingProgress,
+    });
+
+    psv.loaderImage().then((val) => {
+      psv.init();
+    })
+
+    function animComplated() {
+      console.log('animComplated')
+    }
+
+    function clickEggCallback() {
+      console.log('clickEggCallback')
+    }
+
+    function loadingProgress(value) {
+      console.log('loadingProgress: ', value)
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+{
+  "name": "owl-psv",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "server": "http-server",
+    "prepublish": "npm run build",
+    "build": "webpack --config scripts/webpack.config.js",
+    "test": "node_modules/jest/bin/jest.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Future-component/psv.git"
+  },
+  "author": "Beth",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Future-component/psv/issues"
+  },
+  "homepage": "https://github.com/Future-component/psv#readme",
+  "devDependencies": {
+    "babel-jest": "^23.6.0",
+    "babel-preset-env": "^1.7.0",
+    "jest": "^23.6.0",
+    "lodash": "^4.17.11",
+    "webpack": "^4.22.0",
+    "webpack-cli": "^3.1.2"
+  },
+  "files": [
+    "lib",
+    "src",
+    "index.js"
+  ]
+}
